@@ -1,0 +1,43 @@
+body{
+width: 60%;
+	margin: auto;
+	padding: 2%;
+	background-color: #cccccc;
+	margin-left: 0px;
+}
+span{
+    background-color: #E5C93B;
+    border-radius: 15px;
+}
+table{
+	table-layout: fixed;
+	width: 600px;
+}
+td{
+	text-align: center;
+}
+#taskColumn{
+	text-align: justify;
+}
+#taskColumn:hover{
+	color: blue;
+	font-weight: bold;
+	cursor: pointer;
+}
+.clickable:hover{
+	background-color: darkgrey;
+	color: white;
+	cursor: pointer;
+}
+#container{
+	width: 60%;
+	margin: auto;
+	padding: 2%;
+	background-color: black;
+}
+#formDiv{
+	width: 60%;
+	margin: auto;
+	padding: 2%;
+	background-color: #aaaaaa;
+}

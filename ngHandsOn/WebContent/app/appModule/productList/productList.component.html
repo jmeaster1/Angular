@@ -1,0 +1,30 @@
+<!-- <h3>{{ vm.list[0]}}</h3>
+<h3>{{ vm.list[1]}}</h3>
+<h3>{{ vm.list[2]}}</h3>
+<h3>{{ vm.list[3]}}</h3>
+<h3>{{ vm.list[4]}}</h3> --> 
+
+<div ng-repeat="product in vm.list">
+<h3>{{product.name}}</h3>
+<h3>{{product.price}}</h3>
+<img ng-src="{{product.imgUrl}}"></h3>
+</div>
+<br>
+<h5>Items in List : {{vm.getNumItemsInProductList()}}</h5>
+
+<button ng-click="vm.log('word')">console.log</button>
+
+<form>
+  <input type="text" ng-model="product.name" placeholder="Name" /><br />
+  <input type="text" ng-model="product.price" placeholder="Price" /><br />
+  <input type="text" ng-model="product.imgUrl" placeholder="Image URL" /><br />
+  <input type="number" ng-model="product.rating" placeholder="rating" /><br />
+  <input type="submit" ng-click="vm.addToList(product); product = {}" value="Add Item" />
+</form>
+
+<div>
+{{vm.selected}}
+</div>
+
+
+
