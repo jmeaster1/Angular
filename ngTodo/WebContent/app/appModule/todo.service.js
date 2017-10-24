@@ -43,7 +43,7 @@ angular.module('appModule').factory('todoService', function() {
 	};
 
 	service.update = function(todo) {
-		vm.todos.forEach(function(val, idx, arr) {
+		todos.forEach(function(val, idx, arr) {
 			if (val.id === todo.id) {
 				val.task = todo.task;
 				val.description = todo.description;
@@ -51,8 +51,12 @@ angular.module('appModule').factory('todoService', function() {
 			}
 		})
 
-		vm.editTodo = null;
-		vm.displayTable();
+		editTodo = null;
+		displayTable();
+	};
+	
+	displayTable = function() {
+		selected = null;
 	};
 
 	service.destroy = function(id) {

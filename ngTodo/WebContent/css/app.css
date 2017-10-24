@@ -13,6 +13,14 @@ table{
 	table-layout: fixed;
 	width: 600px;
 }
+#deleteButton{
+	background-color: #A80D09;
+	color: white;
+}
+#deleteButton:hover{
+	background-color: #f60b0b;
+	cursor: pointer;
+}
 td{
 	text-align: center;
 }
