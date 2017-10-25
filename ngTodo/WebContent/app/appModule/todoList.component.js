@@ -14,7 +14,7 @@ angular.module('appModule').component('todoList', {
 		 
 		 vm.displayTodo = function(thing) {
 			 vm.selected = thing;
-		 }
+		 };
 		 
 		 vm.getNumTodos = function() {
 				return vm.todos.length;
@@ -25,19 +25,25 @@ angular.module('appModule').component('todoList', {
 		 };
 		 
 		 vm.addTask = function(todo) {
-				todoService.create(todo).then(
+				todoService.create(1,todo).then(
 						function(result) {
 							vm.reload();
 						})
 			 };
 			 
 		 vm.deleteTodo = function(id) {
-				 todoService.destroy(id)
-				 		    .then(function(result) {
-				 		    		vm.reload();
-				 		    })
-			 }
-		 
+			 var sure =	confirm('Are you sure?')
+			 	if (sure == true) {
+	    	  		todoService.destroy(1,id)
+		 		    .then(function(result) {
+		 		    		vm.reload();
+		 		    });
+	    	  	} 
+			else {
+	    	  	    console.log('user canceled');
+	    	  	}
+		 };
+
 		 vm.updateTodo = function(todo, change) {
 				todoService.update(1,todo.id,todo).then(function(result) {
 					

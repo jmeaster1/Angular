@@ -82,10 +82,20 @@ public class TodoDAOImpl implements TodoDAO {
 
 	@Override
 	public Boolean destroy(int uid, int tid) {
-		User managedUser = em.find(User.class, uid);
-		Todo managedTodo = em.find(Todo.class, tid);
-		em.remove(managedTodo);
-		return true;
+		User user = em.find(User.class, uid);
+		Todo todo = em.find(Todo.class, tid);
+		try {
+			em.remove(todo);
+			List<Todo> userTodos = user.getTodos();
+			for (Todo t : userTodos) {
+				if (t.getId() == tid) {
+					userTodos.remove(t);
+					break;
+				}
+			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
-
 }
