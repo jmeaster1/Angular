@@ -1,0 +1,29 @@
+<div class="container">
+
+	<div ng-hide="vm.selected" class="well">
+		<h2 id="titleHeader">POKEMON!</h2>
+		<form>
+			<input placeholder="Id" type="number" ng-model="newPoke.pokeId"><br>
+			<input placeholder="Name" ng-model="newPoke.name"><br> 
+			<input placeholder="Height" type="number" ng-model="newPoke.height"><br>
+			<input placeholder="Weight" type="number" ng-model="newPoke.weight"><br>
+			<input placeholder="Experience" type="number" ng-model="newPoke.exp"><br>
+			<input placeholder="Image URL" ng-model="newPoke.img"><br>
+			<input placeholder="Description" ng-model="newPoke.description"><br>
+			<br>
+			<button type="button"
+				ng-click="vm.createPokemon(newPoke); newPoke = {}">Create
+				New Pokemon!</button>
+		</form>
+	</div>
+
+	<div ng-hide="vm.selected" ng-repeat="poke in vm.pokemons">
+		<ul >
+			<li>{{poke.name}}</li>
+			<li>{{poke.pokeId}}</li>
+			<li><img src="{{poke.img}}" /></li>
+		</ul>
+	</div>
+
+
+</div>

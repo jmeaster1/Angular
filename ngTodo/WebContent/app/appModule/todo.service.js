@@ -1,73 +1,68 @@
-angular.module('appModule').factory('todoService', function() {
-	var service = {};
+	angular.module('appModule')
+	.factory('todoService', function($http) {
+	  var service = {};
 
-	// private
-	var todos = [ {
-		id : 1,
-		task : 'Go round mums',
-		description : '',
-		completed : false
-	}, {
-		id : 2,
-		task : 'Get Liz back',
-		description : '',
-		completed : false
-	}, {
-		id : 3,
-		task : 'Sort life out',
-		description : '',
-		completed : false
-	} ];
+	  var BASE_URL = 'rest/users';
 
-	var generateId = function() {
-		return todos[todos.length - 1].id + 1;
-	}
+	  service.index = function(uid) {
+		  uid = 1;
+	    return $http({
+	      method : 'GET',
+	      url : `${BASE_URL}/${uid}/todo`
+	    })
+	  };
 
-	// public
-	service.index = function() {
-		return todos;
-	};
+	  service.show = function(uid, tid) {
+		  uid = 1;
+	    return $http({
+	      method : 'GET',
+	      url : `${BASE_URL}/${uid}/todo/${tid}`
+	    })
+	  }
 
-	service.create = function(todo) {
+	  service.create = function(uid, todo) {
+		  uid = 1;
+		  var newObj = {
+				  
+					task : todo.task,
+					description : '',
+					completed : false
+				};
+		  
+	    return $http({
+	      method : 'POST',
+	      url : `${BASE_URL}/${uid}/todo`,
+	      headers : {
+	        'Content-Type' : 'application/json'
+	      },
+	      data : newObj
+	    })
+	    
+	  };
 
-		var newObj = {
+	  service.update = function(uid, tid, todo) {
+		  uid = 1;
+			
+	    return $http({
+	      method : 'PUT',
+	      url : `${BASE_URL}/${uid}/todo/${tid}`,
+	      headers : {
+	        'Content-Type' : 'application/json'
+	      },
+	      data : todo
+	    })
+	  };
 
-			id : generateId(),
-			task : todo.task,
-			description : '',
-			completed : false
+	  service.destroy = function(uid, tid) {
+		  uid = 1;
+			
+	    return $http({
+	      method : 'DELETE',
+	      url : `${BASE_URL}/${uid}/todo/${tid}`
+	    })
+	  };
 
-		};
+	  return service;
+	})
 
-		todos.push(newObj);
-	};
-
-	service.update = function(todo) {
-		todos.forEach(function(val, idx, arr) {
-			if (val.id === todo.id) {
-				val.task = todo.task;
-				val.description = todo.description;
-				val.completed = todo.completed;
-			}
-		})
-
-		editTodo = null;
-		displayTable();
-	};
 	
-	displayTable = function() {
-		selected = null;
-	};
-
-	service.destroy = function(id) {
-		for (var i = 0; i < todos.length; i++) {
-			if (id === todos[i].id) {
-				todos.splice(i, 1);
-			} else {
-				console.log(id)
-			}
-		}
-	};
-
-	return service;
-})

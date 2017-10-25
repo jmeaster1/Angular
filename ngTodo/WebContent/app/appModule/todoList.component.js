@@ -4,55 +4,61 @@ angular.module('appModule').component('todoList', {
 	controller : function(todoService) {
 		// 1
 		var vm = this;
-
-		vm.selected = null;
-
+		
 		vm.todos = [];
-		vm.todos = todoService.index();
-
-		vm.addTodo = function(todo) {
-			todoService.create(todo);
-			vm.todos = todoService.index();
-		};
-
-		vm.getNumTodos = function() {
-			return vm.todos.length;
-		};
-
+		vm.selected = null;
+		
 		vm.displayTable = function() {
-			vm.selected = null;
-		};
-
+			vm.selected = null; 
+		 };
+		 
+		 vm.displayTodo = function(thing) {
+			 vm.selected = thing;
+		 }
+		 
+		 vm.getNumTodos = function() {
+				return vm.todos.length;
+			};
+		
 		vm.setEditTodo = function() {
-			vm.editTodo = angular.copy(vm.selected);
-		};
+			 vm.editTodo = angular.copy(vm.selected);
+		 };
+		 
+		 vm.addTask = function(todo) {
+				todoService.create(todo).then(
+						function(result) {
+							vm.reload();
+						})
+			 };
+			 
+		 vm.deleteTodo = function(id) {
+				 todoService.destroy(id)
+				 		    .then(function(result) {
+				 		    		vm.reload();
+				 		    })
+			 }
+		 
+		 vm.updateTodo = function(todo, change) {
+				todoService.update(1,todo.id,todo).then(function(result) {
+					
+						vm.selected = result.data;
+					vm.reload();
+				})
+				vm.editTodo = null;
+			 };
+			 
 
-		vm.updateTodo = function(todo) {
-			console.log(todo)
-			todoService.update(todo);
-			vm.todos = todoService.index();
-			vm.editTodo = null;
-			vm.displayTable();
-		};
-
-		vm.addTodo = function(todo) {
-			var copy = angular.copy(todo);
-			todoService.create(copy);
-		}
-
-		vm.deleteTodo = function(id) {
-			console.log('clicked')
-			todoService.destroy(id);
-			vm.todos = todoService.index();
-		};
-
-		vm.displayTodo = function(todo) {
-			vm.selected = todo;
-			console.log("displayed" + todo)
-		}
-
-	},
-	// 3
-	controllerAs : 'vm'
-
-})
+			 vm.reload = function() {
+				todoService.index().then(function(result) {
+					vm.todos = result.data;
+				}); 
+				
+			 };
+			 
+			 vm.reload();
+			 
+		 	},
+		 	
+		 	controllerAs : "vm"
+	  });
+			
