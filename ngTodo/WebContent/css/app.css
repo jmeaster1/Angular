@@ -1,51 +1,45 @@
-body{
-width: 60%;
-	margin: auto;
-	padding: 2%;
-	background-color: #cccccc;
-	margin-left: 0px;
+nav {
+	margin-bottom: 15px;
 }
-span{
-    background-color: #E5C93B;
-    border-radius: 15px;
+
+form {
+	margin-bottom: 20px;
 }
-table{
-	table-layout: fixed;
-	width: 800px;
+
+h4 {
+	margin-bottom: 20px;
 }
-#deleteButton{
-	background-color: #A80D09;
-	color: white;
+
+.editLabel {
+	display: inline;
+	margin-right: 20px;
 }
-#deleteButton:hover{
-	background-color: #f60b0b;
-	cursor: pointer;
+
+.center-div
+{
+     margin: 0 auto;
+     width: 400px; 
 }
-td{
-	text-align: center;
+.centerError
+{
+     margin: 0 auto;
+     width: 700px; 
 }
-#taskColumn{
-	text-align: justify;
+
+.red {
+	background : #ff8585;
 }
-#taskColumn:hover{
-	color: blue;
-	font-weight: bold;
-	cursor: pointer;
+
+.yellow {
+	background : #fdf882;
+	color : #d3d3d3;
 }
-.clickable:hover{
-	background-color: darkgrey;
-	color: white;
-	cursor: pointer;
+
+.green {
+	background : #5cb85c;
 }
-#container{
-	width: 60%;
-	margin: auto;
-	padding: 2%;
-	background-color: black;
-}
-#formDiv{
-	width: 60%;
-	margin: auto;
-	padding: 2%;
-	background-color: #aaaaaa;
+
+.strikethrough {
+	color : #808080;
+	text-decoration : line-through;	
 }
